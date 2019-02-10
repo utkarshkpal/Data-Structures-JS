@@ -52,6 +52,55 @@ Algo:
 
 */
 
+/* Implementing QUEUE With 2 Stacks
+  1) making enqueue expensive
+   This also makes sure that the oldest element is at the top of stack 1
+   Algo :  enqueue(x)
+          1) while s1 is not empty pop all elem from it and push it onto s2
+          2) push the elem x onto stack 1;
+          3) while s2 is not empty pop all elem of s2 and push to s1;
+
+          dequeue
+          1) Pop from elem from stack 1
+
+
+*/
+
+(function queueUsingStack() {
+
+    const s1 = new Stack();
+    const s2 = new Stack();
+
+    function Enqueue(x) {
+        while (s1.top !== 0) {
+            s2.push(s1.pop());
+        }
+        s1.push(x);
+        while (s2.top !== 0) {
+            s1.push(s2.pop());
+        }
+    }
+
+    function Dequeue() {
+        return s1.pop();
+    }
+
+    function peek() {
+        return s1.peek();
+    }
+
+    Enqueue(1);
+    Enqueue(2);
+    Enqueue(3);
+    s1.printStack();
+    console.log(Dequeue());
+    Enqueue(4);
+    Enqueue(5);
+    s1.printStack();
+    console.log(peek());
+
+})();
+
 function mulBase(num, base) {
 
     var s = new Stack();
@@ -211,4 +260,4 @@ function postfixEvaluation(string) {
     return s.peek();
 }
 
-console.log(postfixEvaluation('231*+9-'));
+//console.log(postfixEvaluation('231*+9-'));
