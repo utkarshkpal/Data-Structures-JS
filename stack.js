@@ -36,9 +36,37 @@ Stack.prototype.length = function () {
     return this.top;
 }
 
+const findMax = function (s) {
+
+    if (s.top != 0) {
+
+        let max = s.peek();
+
+        while (s.top != 0) {
+            const currentItem = s.pop();
+            if (max < currentItem) {
+                max = currentItem;
+            }
+        }
+        return max;
+
+    } else {
+        return null;
+    }
+
+}
+
 var Stack1 = new Stack();
 
-// Stack1.push('abc'); Stack1.push('pqr'); Stack1.push('xyz');
+Stack1.push(3);
+Stack1.push(2);
+Stack1.push(1);
+console.log(findMax(Stack1));
+Stack1.push(1);
+Stack1.push(4);
+Stack1.push(7);
+console.log(findMax(Stack1));
+
 // Stack1.printStack(); console.log(Stack1.pop()); Stack1.printStack();
 // console.log(Stack1.peek()); console.log(Stack1.length()); Stack1.clear();
 // Stack1.printStack();
@@ -89,15 +117,8 @@ Algo:
         return s1.peek();
     }
 
-    Enqueue(1);
-    Enqueue(2);
-    Enqueue(3);
-    s1.printStack();
-    console.log(Dequeue());
-    Enqueue(4);
-    Enqueue(5);
-    s1.printStack();
-    console.log(peek());
+    // Enqueue(1); Enqueue(2); Enqueue(3); s1.printStack(); console.log(Dequeue());
+    // Enqueue(4); Enqueue(5); s1.printStack(); console.log(peek());
 
 })();
 
