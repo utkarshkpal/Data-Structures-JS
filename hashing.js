@@ -97,24 +97,49 @@ function CheckIfSubset(a1, a2) {
 
 }
 
-console.log(CheckIfSubset([
-    3,
-    3,
-    3,
-    1,
-    36,
-    21,
-    3,
-    7,
-    7
-], [
-    3,
-    3,
-    7,
-    7,
-    7,
-    1
-]));
-
+// console.log(CheckIfSubset([     3,     3,     3,     1,     36,     21, 3,
+// 7,     7 ], [     3,     3,     7,     7,     7,     1 ]));
 // console.log(CheckIfSubset([     1,     2,     3,     4,     5,     6 ], [1,
 // 2, 4])); console.log(CheckIfSubset([     10, 5, 2, 23, 19 ], [19, 5, 3]));
+
+/*
+  Application :check if a array has a sum of pair equal to x
+
+  A[5,7,8,3,1,6]   x:9
+
+  1) Initialize an empty hash table s.
+  2) Do following for each element A[i] in A[]
+   (a)    If s[x - A[i]] is set then print the pair (A[i], x - A[i])
+   (b)    Insert A[i] into s.
+
+   s[5]  = 1;
+   s[7]  = 1;
+   s[8]  = 1;   //already set
+   s[3]  = 1;
+
+    return (1,8)
+
+*/
+
+function arrWithGivenSum(a, x) {
+    const hTable = {}
+
+    for (let i = 0; i < a.length; i++) {
+        if (hTable[x - a[i]] != undefined) {
+            const string = String(a[i]) + ' ' + String(x - a[i]);
+            return string;
+        }
+        hTable[a[i]] = 1;
+    }
+    return false;
+
+}
+
+console.log(arrWithGivenSum([
+    5,
+    7,
+    8,
+    3,
+    1,
+    6
+], 100));
