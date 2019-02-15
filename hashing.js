@@ -97,8 +97,8 @@ function CheckIfSubset(a1, a2) {
 
 }
 
-// console.log(CheckIfSubset([     3,     3,     3,     1,     36,     21, 3,
-// 7,     7 ], [     3,     3,     7,     7,     7,     1 ]));
+// console.log(CheckIfSubset([     3,     3,     3,     1,     36,     21, 3, 7,
+//     7 ], [     3,     3,     7,     7,     7,     1 ]));
 // console.log(CheckIfSubset([     1,     2,     3,     4,     5,     6 ], [1,
 // 2, 4])); console.log(CheckIfSubset([     10, 5, 2, 23, 19 ], [19, 5, 3]));
 
@@ -135,11 +135,94 @@ function arrWithGivenSum(a, x) {
 
 }
 
-console.log(arrWithGivenSum([
-    5,
-    7,
-    8,
-    3,
-    1,
-    6
-], 100));
+// console.log(arrWithGivenSum([     5,     7,     8,     3,     1,     6 ],
+// 100));
+
+function superReducedstring(s) {
+
+    function reduce(s, altered) {
+
+        if (!altered) {
+            return s;
+        }
+        const arr = s.split('');
+
+        for (let i = 0; i < s.length; i++) {
+            if (arr[i] == arr[i + 1]) {
+                arr[i] = "";
+                arr[i + 1] = "";
+                const newstring = arr.join('');
+                return reduce(newstring, true);
+            }
+
+        }
+        return s;
+    }
+
+    const reducedstring = reduce(s, true);
+
+    if (reducedstring.length == 0) {
+        return 'Empty String';
+    }
+    return reducedstring;
+
+}
+
+function miniMaxSum(arr) {
+    let sum = 0;
+    let min = arr[0],
+        max = arr[0];
+    for (let i = 0; i < arr.length; i++) {
+
+        if (min > arr[i]) {
+            min = arr[i];
+        }
+        if (max < arr[i]) {
+            max = arr[i];
+        }
+
+        sum += arr[i];
+    }
+    const maxSum = sum - min;
+    const minSum = sum - max;
+    const string = minSum + ' ' + maxSum;
+    console.log(string);
+}
+// miniMaxSum([1, 2, 3, 4, 5]); console.log(superReducedstring('baab'));
+
+function sanitize(string) {
+    const regex = /[^\w]/g;
+    return string
+        .replace(regex, '')
+        .toLowerCase();
+}
+
+function Urlify(s) {
+
+    const charArr = s.split('');
+    let whitespaces = 0;
+
+    for (let char in charArr) {
+        if (charArr[char] == ' ') {
+            whitespaces++;
+        }
+    }
+    // debugger;
+
+    let totalLength = (charArr.length + 2 * whitespaces) - 1;
+
+    for (let i = charArr.length - 1; i >= 0; i--) {
+        if (charArr[i] != " ") {
+            charArr[totalLength--] = charArr[i];
+        } else {
+            charArr[totalLength--] = '0';
+            charArr[totalLength--] = '2';
+            charArr[totalLength--] = '%';
+        }
+    }
+    console.log(charArr);
+    return charArr.join('');
+
+}
+
+console.log(Urlify("  mr john  wick "));
