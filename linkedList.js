@@ -128,16 +128,46 @@ const ll1 = new linkedList();
 // ll1.insert(12); ll1.insert(12); ll1.insert(12); ll1.insert(11);
 // ll1.insert(12); ll1.insert(21); ll1.insert(41); ll1.insert(43);
 // ll1.insert(21); ll1.insert(21); printList(ll1.head);
-// RemoveDuplicates(ll1.head); printList(ll1.head);
+// RemoveDuplicates(ll1.head); printList(ll1.head); ll1.insert(1);
+// ll1.insert(1); ll1.insert(2); ll1.insert(3); ll1.insert(3); ll1.insert(4);
+// ll1.insert(4); ll1.insert(4); printList(ll1.head);
+// RemoveDuplicatesSorted(ll1.head); printList(ll1.head);
 
-ll1.insert(1);
+/*
+  Delete middle element
+
+*/
+
+function deleteMiddleElement(head) {
+    let slow = head;
+    let fast = head;
+
+    // no element
+    if (head == null) {
+        return null;
+    }
+
+    //1 element
+    if (head.next == null) {
+        head = null;
+        return head;
+    }
+
+    while (fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    slow.next = slow.next.next;
+
+}
+
 ll1.insert(1);
 ll1.insert(2);
 ll1.insert(3);
-ll1.insert(3);
 ll1.insert(4);
-ll1.insert(4);
-ll1.insert(4);
+ll1.insert(5);
+
 printList(ll1.head);
-RemoveDuplicatesSorted(ll1.head);
+deleteMiddleElement(ll1.head);
 printList(ll1.head);
