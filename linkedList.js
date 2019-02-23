@@ -390,3 +390,13 @@ ll1.insert(2);
 ll1.insert(1);
 
 console.log(checkLLPalindrome(ll1.head));
+
+/*
+Detect loop and remove loop
+1) take  s and f pointer.
+2) increment s by 1 and f by 2.
+3) if they meet it has loop.
+4) point s to starting and let f point to the same point.
+5)
+
+*/
