@@ -35,6 +35,12 @@ Stack.prototype.clear = function () {
 Stack.prototype.length = function () {
     return this.top;
 }
+Stack.prototype.isEmpty = function () {
+    if (this.top < 1) {
+        return true;
+    }
+    return false;
+}
 
 const findMax = function (s) {
 
@@ -282,3 +288,47 @@ function postfixEvaluation(string) {
 }
 
 //console.log(postfixEvaluation('231*+9-'));
+
+/*
+Sort a stack using temp stack
+ S :3,23,31
+ TS : 98,92,34
+ curr: 34
+*/
+
+function sortStack(S) {
+
+    const TS = new Stack();
+    // debugger;
+
+    while (!S.isEmpty()) {
+        let curr = S.pop();
+        if (TS.isEmpty()) {
+            TS.push(curr);
+
+        } else if (curr <= TS.peek()) {
+            TS.push(curr);
+        } else {
+
+            while (TS.peek() < curr && (!TS.isEmpty())) {
+                S.push(TS.pop());
+
+            }
+            TS.push(curr);
+        }
+    }
+
+    return TS;
+}
+
+const S = new Stack;
+
+S.push(34);
+S.push(3);
+S.push(31);
+S.push(98);
+S.push(92);
+S.push(23);
+console.log(S);
+
+console.log(sortStack(S));
